@@ -10,9 +10,24 @@ class MedicationsController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public $medicationList;
+
+    public function mount()
+    {
+        $this->medicationList = Medications::all();
+    }
+
+    public function render()
+    {
+        return view('livewire.medication-list', [
+            'medicationList' => $this->medicationList,
+        ]);
+    }
     public function index()
     {
-        //
+        $medicationList = Medications::all();
+        return view('livewire.medication-list',compact('medicationList'));
     }
 
     /**
